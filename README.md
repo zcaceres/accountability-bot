@@ -1,2 +1,2 @@
 # Accountability Bot
-## A Public Shaming Robot
+## A Public Shaming Robot for Personal Accountability
