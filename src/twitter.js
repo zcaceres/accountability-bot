@@ -21,8 +21,10 @@ function sendShameMessage(client) {
   // This was totally #amateur. I were a serious maker, I would have done it.'
 
   client.post('statuses/update', {
-    status: ''
+    status: 'TESTING'
   })
+  .then(res => console.log('Sent shame message successfully', res))
+  .catch(err => console.error(err))
 }
 
 module.exports = {

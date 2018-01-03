@@ -29,40 +29,41 @@ const github = require('./github')
 */
 
 function timer(duration) {
-  const [zach, sara] = twitter.setup()
-  const githubClient = github.setup()
-  github.fetchCommitLog('zcaceres', 'progress-logs', githubClient, function(err, commits) {
-    if (err) console.error(err)
-    console.log(getMostRecentCommits(commits.data))
-
-  })
-  // TODO: REMOVE ME
-  // twitter.sendShameMessage()
-  // setInterval(commitmentCheck, duration)
+  setInterval(commitmentCheck, duration)
 }
 module.exports = timer
 
+const OWNER = 'zcaceres'
+const REPO = 'progress-logs'
 function commitmentCheck() {
-  const log = fetchCommitLog()
-  const commits = getMostRecentCommits(log)
-  const dates = parseDates(commits)
-  const usernames = parseUsernames(commits)
+  const githubClient = github.setup()
+  github.fetchCommitLog(OWNER, REPO, githubClient, function(err, commits) {
+    if (err) return console.error(err)
+    const committed = github.getMostRecentCommits(commits.data)
+    committed.forEach(username => {
+      if (containsUsername(committed, username)) return
+      twitter.sendShameMessage(getTwitterClient(username))
+    })
+  })
+}
+
+function getTwitterClient(githubUser) {
+  const [zach, sara] = twitter.setup()
+  switch (githubUser) {
+    case 'zcaceres': {
+      return zach
+    }
+    case 'sisanchez': {
+      return sara
+    }
+    default: {
+     console.error('Invalid githubUser', githubUser)
+    }
+  }
 }
 
 
-function parseDates(commits) {
-
-}
-
-function parseUsernames(commits) {
-
-}
-
-function isFromYesterday(commit) {
-
-}
-
-const USERNAMES = ['zcaceres', 'sisanchez']
-function containsUsername(commits) {
-
+// const USERNAMES = ['zcaceres', 'sisanchez']
+function containsUsername(usernameList, username) {
+  return usernameList.includes(username)
 }
