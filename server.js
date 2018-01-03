@@ -13,5 +13,5 @@ const listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
 
-const TIME_TO_CHECK = 10000
+const TIME_TO_CHECK = 86400000
 timer(TIME_TO_CHECK)

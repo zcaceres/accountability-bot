@@ -17,11 +17,9 @@ function setup() {
 }
 
 function sendShameMessage(client) {
-  // 'ACCOUNTABILITY BOT: I, ${name}, did not complete my programming progress check in today.
-  // This was totally #amateur. I were a serious maker, I would have done it.'
-
+  const message = 'ACCOUNTABILITY BOT: I did not complete my programming progress check in today. This was totally #amateur. I were a serious maker, I would have done it.'
   client.post('statuses/update', {
-    status: 'TESTING'
+    status: message
   })
   .then(res => console.log('Sent shame message successfully', res))
   .catch(err => console.error(err))
