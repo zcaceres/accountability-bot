@@ -1,7 +1,7 @@
-const axios = require('axios')
-const Twitter = require('twitter')
+const twitter = require('./twitter')
+const github = require('./github')
 
-/* global process require setInterval */
+/* global process setInterval */
 
 // Twitter API (access to Sara and Zach's twitter via api key)
 // GitHub api
@@ -21,9 +21,6 @@ const Twitter = require('twitter')
   7. if Sara or Zach's username is not included or date is before yesterday
     Post message to Twitter API based on the username missing
 
-  'ACCOUNTABILITY BOT: I, ${name}, did not complete my programming progress check in today.
-  This was totally #amateur. I were a serious maker, I would have done it.'
-
   Logs Repo: https://github.com/zcaceres/progress-logs.git
   Sara Twitter: @sarasanchezgt
   Zach Twitter: @zachcaceres
@@ -31,24 +28,15 @@ const Twitter = require('twitter')
   Zach Github: @zcaceres
 */
 
-function setupTwitterClients() {
-  const zach = new Twitter({
-    consumer_key: process.env.TWITTER_CONSUMER_KEY,
-    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-    access_token_key: process.env.TWITTER_ZACH_KEY,
-    access_token_secret: process.env.TWITTER_ZACH_SECRET
-  });
-  const sara = new Twitter({
-    consumer_key: process.env.TWITTER_CONSUMER_KEY,
-    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-    access_token_key: process.env.TWITTER_SARA_KEY,
-    access_token_secret: process.env.TWITTER_SARA_SECRET
-  });
-}
-
 function timer(duration) {
+  const [zach, sara] = twitter.setup()
+  const githubClient = github.setup()
+  github.fetchCommitLog('zcaceres', 'progress-logs', githubClient, function(err, commits) {
+    if (err) console.error(err)
+    console.log('COMMITS', commits)
+  })
   // TODO: REMOVE ME
-  sendShameMessage()
+  // twitter.sendShameMessage()
   // setInterval(commitmentCheck, duration)
 }
 module.exports = timer
@@ -60,13 +48,6 @@ function commitmentCheck() {
   const usernames = parseUsernames(commits)
 }
 
-function fetchCommitLog(repoUrl) {
-
-}
-
-function getMostRecentCommits(log) {
-
-}
 
 function parseDates(commits) {
 
@@ -80,12 +61,7 @@ function isFromYesterday(commit) {
 
 }
 
-function containsUsername() {
+const USERNAMES = ['zcaceres', 'sisanchez']
+function containsUsername(commits) {
 
-}
-
-function sendShameMessage(client) {
-  client.post('statuses/update', {
-    status: 'TESTING'
-  })
 }

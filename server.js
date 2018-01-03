@@ -14,4 +14,4 @@ const listener = app.listen(process.env.PORT, function () {
 });
 
 const TIME_TO_CHECK = 10000
-// timer(TIME_TO_CHECK)
+timer(TIME_TO_CHECK)
