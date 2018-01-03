@@ -1,0 +1,27 @@
+{
+  "name": "accountability-bot",
+  "version": "1.0.0",
+  "description": "a public shaming robot",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "test",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zcaceres/accountability-bot.git"
+  },
+  "author": "Zach Caceres @zachcaceres",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zcaceres/accountability-bot/issues"
+  },
+  "homepage": "https://github.com/zcaceres/accountability-bot#readme",
+  "devDependencies": {
+    "eslint": "^4.14.0"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "twitter": "^1.7.1"
+  }
+}

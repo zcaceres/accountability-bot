@@ -1,3 +1,8 @@
+import axios from 'axios'
+import Twitter from 'twitter'
+
+/* global process setInterval */
+
 // Twitter API (access to Sara and Zach's twitter via api key)
 // GitHub api
 // Git repo for progress logs (submitting markdown documents each 24 period)
@@ -18,4 +23,73 @@
 
   'ACCOUNTABILITY BOT: I, ${name}, did not complete my programming progress check in today.
   This was totally #amateur. I were a serious maker, I would have done it.'
+
+  Logs Repo: https://github.com/zcaceres/progress-logs.git
+  Sara Twitter: @sarasanchezgt
+  Zach Twitter: @zachcaceres
+  Sara Github: @sisanchez
+  Zach Github: @zcaceres
 */
+
+
+const TIME_TO_CHECK = 10000
+timer(TIME_TO_CHECK)
+
+function setupTwitterClients() {
+  const zach = new Twitter({
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+    access_token_key: process.env.TWITTER_ZACH_KEY,
+    access_token_secret: process.env.TWITTER_ZACH_SECRET
+  });
+  const sara = new Twitter({
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+    access_token_key: process.env.TWITTER_SARA_KEY,
+    access_token_secret: process.env.TWITTER_SARA_SECRET
+  });
+}
+
+function timer(duration) {
+  // TODO: REMOVE ME
+  sendShameMessage()
+  // setInterval(commitmentCheck, duration)
+}
+
+function commitmentCheck() {
+  const log = fetchCommitLog()
+  const commits = getMostRecentCommits(log)
+  const dates = parseDates(commits)
+  const usernames = parseUsernames(commits)
+
+}
+
+function fetchCommitLog(repoUrl) {
+
+}
+
+function getMostRecentCommits(log) {
+
+}
+
+function parseDates(commits) {
+
+}
+
+function parseUsernames(commits) {
+
+}
+
+function isFromYesterday(commit) {
+
+}
+
+function containsUsername() {
+
+}
+
+function sendShameMessage(client) {
+  client.post('statuses/update', {
+    status: 'TESTING'
+  })
+}
