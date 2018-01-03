@@ -1,7 +1,7 @@
-import axios from 'axios'
-import Twitter from 'twitter'
+const axios = require('axios')
+const Twitter = require('twitter')
 
-/* global process setInterval */
+/* global process require setInterval */
 
 // Twitter API (access to Sara and Zach's twitter via api key)
 // GitHub api
@@ -31,10 +31,6 @@ import Twitter from 'twitter'
   Zach Github: @zcaceres
 */
 
-
-const TIME_TO_CHECK = 10000
-timer(TIME_TO_CHECK)
-
 function setupTwitterClients() {
   const zach = new Twitter({
     consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -55,13 +51,13 @@ function timer(duration) {
   sendShameMessage()
   // setInterval(commitmentCheck, duration)
 }
+module.exports = timer
 
 function commitmentCheck() {
   const log = fetchCommitLog()
   const commits = getMostRecentCommits(log)
   const dates = parseDates(commits)
   const usernames = parseUsernames(commits)
-
 }
 
 function fetchCommitLog(repoUrl) {

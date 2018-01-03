@@ -4,6 +4,7 @@
   "description": "a public shaming robot",
   "main": "src/index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "test",
     "lint": "eslint ."
   },
