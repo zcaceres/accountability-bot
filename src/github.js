@@ -6,21 +6,22 @@ function setup() {
 
 function getYesterday(date) {
   const d = date
-  return d.setDate(d.getDate()-1).toISOString();
+  d.setDate(d.getDate()-1)
+  return d.toISOString()
 }
 
 function fetchCommitLog(owner, repo, client, cb) {
-  const today = new Date().toISOString()
+  const today = new Date()
   const yesterday = getYesterday(today)
   client.repos.getCommits({
     owner,
     repo,
-    until: yesterday
+    since: yesterday
   }, cb)
 }
 
-function getMostRecentCommits(log) {
-
+function getMostRecentCommits(logs) {
+  return logs.map(log => log.author).map(author => author.login)
 }
 
 module.exports = {

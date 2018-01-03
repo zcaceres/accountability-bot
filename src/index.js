@@ -33,7 +33,8 @@ function timer(duration) {
   const githubClient = github.setup()
   github.fetchCommitLog('zcaceres', 'progress-logs', githubClient, function(err, commits) {
     if (err) console.error(err)
-    console.log('COMMITS', commits)
+    console.log(getMostRecentCommits(commits.data))
+
   })
   // TODO: REMOVE ME
   // twitter.sendShameMessage()
