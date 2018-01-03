@@ -49,8 +49,6 @@ function getTwitterClient(githubUser) {
   }
 }
 
-
-// const USERNAMES = ['zcaceres', 'sisanchez']
 function containsUsername(usernameList, username) {
   return usernameList.includes(username)
 }
