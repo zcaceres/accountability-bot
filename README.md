@@ -1,5 +1,5 @@
 # Accountability Bot
-## A Public Shaming Robot for Personal Accountability
+## A Personal Accountability Robot
 
 Accountability Bot is a project of Zach Caceres(zcaceres) and Sara Sanchez (sisanchez).
 

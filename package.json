@@ -1,7 +1,7 @@
 {
   "name": "accountability-bot",
   "version": "1.0.0",
-  "description": "a public shaming for personal accountability robot",
+  "description": "A personal accountability robot",
   "main": "src/index.js",
   "scripts": {
     "start": "node server.js",
